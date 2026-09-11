@@ -83,14 +83,15 @@ S_rated = 1e6;          % Inverter rated apparent power [VA]
 V_POC = 11e3;           % Inverter POC voltage, line-to-line RMS [V]
 
 %% Grid strength
-SCR = 5;                % Short Circuit Ratio
+SCR = 3.5;                % Short Circuit Ratio
 XR = 8;                 % X/R ratio
 
 %% Short-circuit level
 S_sc = SCR * P_rated;   % Short-circuit apparent power [VA]
 
 %% Grid impedance
-Z_sc = V_POC^2 / S_sc;  % Short-circuit impedance [Ohm]
+V_POC_src = V_grid;                  % source connects at 110 kV
+Z_sc = V_POC_src^2 / S_sc;
 
 X_g = Z_sc / sqrt(1 + (1/XR)^2);
 R_g = X_g / XR;
@@ -106,3 +107,4 @@ fprintf('Z_sc = %.6f Ohm\n', Z_sc);
 fprintf('R_g = %.6f Ohm\n', R_g);
 fprintf('X_g = %.6f Ohm\n', X_g);
 fprintf('L_g = %.6f H\n', L_g);
+
