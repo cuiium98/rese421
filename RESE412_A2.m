@@ -83,7 +83,7 @@ S_rated = 1e6;          % Inverter rated apparent power [VA]
 V_POC = 11e3;           % Inverter POC voltage, line-to-line RMS [V]
 
 %% Grid strength
-SCR = 3.5;                % Short Circuit Ratio
+SCR = 1.5;                % Short Circuit Ratio
 XR = 8;                 % X/R ratio
 
 %% Short-circuit level
