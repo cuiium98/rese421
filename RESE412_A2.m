@@ -83,7 +83,7 @@ S_rated = 1e6;          % Inverter rated apparent power [VA]
 V_POC = 11e3;           % Inverter POC voltage, line-to-line RMS [V]
 
 %% Grid strength
-SCR = 1.5;                % Short Circuit Ratio
+SCR = 3;                % Short Circuit Ratio
 XR = 8;                 % X/R ratio
 
 %% Short-circuit level
@@ -98,6 +98,18 @@ R_g = X_g / XR;
 
 %% Grid inductance
 L_g = X_g / (2*pi*f);
+
+
+
+k_comp  = 0.75;                                  % 75% series compensation
+X_line  = 2*pi*f*(L12_1+L12_2)*l1_12;            % Bus 1-2 line reactance [Ohm]
+X_C     = k_comp*X_line;
+C_ser   = 1/(2*pi*f*X_C);
+f_res   = f*sqrt(X_C/(X_g + X_line));
+
+%% Fault scenario (Case 4 - GB outage, asymmetric fault)
+t_fault   = 1.0;            % fault application time [s]
+t_clear   = t_fault + 0.07; % 70 ms clearing, per the GB event
 
 %% Display values
 fprintf('SCR = %.2f\n', SCR);
