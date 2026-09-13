@@ -83,7 +83,7 @@ S_rated = 1e6;          % Inverter rated apparent power [VA]
 V_POC = 11e3;           % Inverter POC voltage, line-to-line RMS [V]
 
 %% Grid strength
-SCR = 3;                % Short Circuit Ratio
+SCR = 5;                % Short Circuit Ratio
 XR = 8;                 % X/R ratio
 
 %% Short-circuit level
@@ -110,6 +110,14 @@ f_res   = f*sqrt(X_C/(X_g + X_line));
 %% Fault scenario (Case 4 - GB outage, asymmetric fault)
 t_fault   = 1.0;            % fault application time [s]
 t_clear   = t_fault + 0.07; % 70 ms clearing, per the GB event
+
+
+%% Case 8 - Texas Panhandle, two sequential L-L faults
+t_f1    = 1.0;              % Fault 1: A-B on tie line
+t_c1    = t_f1 + 0.07;
+t_f2    = 3.0;              % Fault 2: B-C on transmission circuit
+t_c2    = t_f2 + 0.07;
+R_fault = 0.01;
 
 %% Display values
 fprintf('SCR = %.2f\n', SCR);
